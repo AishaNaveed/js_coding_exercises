@@ -15,14 +15,22 @@ function addVAT(originalPrice, vatRate) {
   if (originalPrice === undefined) throw new Error("originalPrice is requied");
   if (vatRate === undefined) throw new Error("vatRate is required");
   
-  return originalPrice + (originalPrice * vatRate / 100);
+  const vatCal = originalPrice + (originalPrice * vatRate / 100);
+  if (vatCal % 1 != 0)
+      return parseFloat(vatCal.toFixed(2));
+  else 
+      return vatCal;
 }
 
 function getSalePrice(originalPrice, reduction) {
   if (originalPrice === undefined) throw new Error("originalPrice is required");
   if (reduction === undefined) throw new Error("reduction is required");
 
-  return originalPrice - (originalPrice * reduction / 100);
+  let result = originalPrice - (originalPrice * reduction / 100);
+    if(result % 1 != 0)
+        return parseFloat(result.toFixed(2));
+    else
+        return result;
 }
 
 function getMiddleCharacter(str) {
@@ -43,17 +51,40 @@ function reverseWord(word) {
 
 function reverseAllWords(words) {
   if (words === undefined) throw new Error("words is required");
-  // Add your code here!
+  
+  let arr = new Array(words);
+    for(let i = 0; i < words.length; i++)
+    {
+        arr[i] = words[i].split("").reverse().join("");
+    }
+    return arr;
 }
 
 function countLinuxUsers(users) {
   if (users === undefined) throw new Error("users is required");
-  // Add your code here!
+  
+  let total = 0;
+  for(let i = 0; i < users.length; i++)
+  {
+      if(users[i].type == "Linux")
+          total++;
+  }
+  return total;
 }
 
 function getMeanScore(scores) {
   if (scores === undefined) throw new Error("scores is required");
-  // Add your code here!
+  
+  let sum = 0;
+    for(let i = 0; i < scores.length; i++)
+    {
+        sum = sum + scores[i];
+    }
+    const result = sum/scores.length;
+    if(result % 1 != 0)
+        return parseFloat(result.toFixed(2));
+    else
+        return result;
 }
 
 function simpleFizzBuzz(n) {
