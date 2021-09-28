@@ -81,7 +81,7 @@ function getSquareRoots(nums) {
         let num = Math.sqrt(nums[i]);
         if(num % 1 != 0)
         {
-            arr[temp] = num.toFixed(2);
+            arr[temp] = parseFloat(num.toFixed(2));
             temp++;       
         }
         else
@@ -96,12 +96,26 @@ function getSquareRoots(nums) {
 function findSentencesContaining(sentences, str) {
   if (!sentences) throw new Error("sentences is required");
   if (!str) throw new Error("str is required");
-  // Your code here
+  
+  let temp = 0;
+    let arr = new Array();
+    for(let i = 0; i < sentences.length; i++)
+    {
+        if(sentences[i].toLowerCase().includes(str.toLowerCase()) == true)
+        {
+            arr[temp] = sentences[i].split().toString();
+            temp++;
+        }
+    }
+    return arr;
 }
 
 function getLongestSides(triangles) {
   if (!triangles) throw new Error("triangles is required");
-  // Your code here
+  return triangles.map(temp => {
+    const big = Math.max(...temp);
+    return big;
+ });
 }
 
 module.exports = {
