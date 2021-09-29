@@ -1,27 +1,61 @@
 const findNextNumber = (nums, n) => {
   if (nums === undefined) throw new Error("nums is required");
   if (n === undefined) throw new Error("n is required");
-  // Your code here!
+  for(let i = 0; i < nums.length; i++)
+  {
+      if(nums[i] == n)
+      {
+         //if(nums[i] != nums.lastIndexOf)
+              return nums[i+1];
+      }
+  }
+  return null;
 };
 
 const count1sand0s = str => {
   if (str === undefined) throw new Error("str is required");
-  // Your code here!
+  let sum = 0;
+  for(let i = 0; i < str.length; i++)
+  {
+      sum += Number(str[i]);
+  }
+  return {
+      '0': str.length-sum,
+      '1': sum
+  };
 };
 
 const reverseNumber = n => {
   if (n === undefined) throw new Error("n is required");
-  // Your code here!
+  return parseFloat(n.toString().split('').reverse().join('')*Math.sign(n));
 };
 
 const sumArrays = arrs => {
   if (arrs === undefined) throw new Error("arrs is required");
-  // Your code here!
+  let sum = 0;
+  for(let i = 0; i < arrs.length; i++)
+  {
+      for(let j = 0; j < arrs[i].length; j++)
+      {
+          sum += arrs[i][j];
+      }
+  }
+  return sum;
 };
 
 const arrShift = arr => {
   if (arr === undefined) throw new Error("arr is required");
-  // Your code here!
+
+  let temp = 0, n = arr.length;
+  if(n > 1)
+  {
+      temp = arr[0];
+      arr[0] = arr[n-1];
+      arr[n-1] = temp;
+      return arr;
+  }
+  else 
+      return arr;
 };
 
 const findNeedle = (haystack, searchTerm) => {
@@ -32,7 +66,23 @@ const findNeedle = (haystack, searchTerm) => {
 
 const getWordFrequencies = str => {
   if (str === undefined) throw new Error("str is required");
-  // Your code here!
+
+  let output = new Array(), arr = new Array();
+    
+    arr = str.toLowerCase().replace(/[^a-zA-Z ]/g, "").split(" ");
+    
+    for(let i = 0; i < arr.length; i++)
+    {
+        let word = arr[i];
+        if(output[word] === undefined)
+        {
+            output[word] = 1;
+        }
+        else{
+            output[word] += 1;
+        }
+    }
+    return output;
 };
 
 module.exports = {
