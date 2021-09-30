@@ -43,3 +43,23 @@ describe("sumMultiples", () => {
         expect(sumMultiples([2, 11, 64, 47, 98])).toBe(0);
     });
 });
+
+describe("isItPrime", () => {
+    test("function throws an error if no argument is qiven", () => {
+        expect(() => {
+            isItPrime()
+        }).toThrow("n is required");
+    });
+    
+    test("gives false if number is less than or equal to 1", () => {
+        expect(isItPrime(1)).toBe(false);
+        expect(isItPrime(-45)).toBe(false);
+    });
+
+    test("gives false if number is not prime and true if number is prime", () => {
+        expect(isItPrime(10)).toBe(false);
+        expect(isItPrime(3)).toBe(true);
+        expect(isItPrime(33)).toBe(false);
+        expect(isItPrime(23)).toBe(true);
+    });
+});
