@@ -4,6 +4,14 @@
  */
 const sumDigits = n => {
   if (n === undefined) throw new Error("n is required");
+  if (isNaN(n)) throw new Error("number is needed instead of string");
+
+  let sum = 0;
+  while (n !== 0) {
+    sum += n % 10;
+    n = parseInt(n / 10);
+  }
+  return sum;
 };
 
 /**

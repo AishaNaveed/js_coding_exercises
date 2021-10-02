@@ -105,6 +105,9 @@ describe("isItPrime", () => {
         expect(() => {
             isItPrime("abc")
         }).toThrow("A number is required");
+        expect(() => {
+            isItPrime(4.5)
+        }).toThrow("Enter an integar number");
     });
 
     test("gives false if number is less than or equal to 1", () => {
@@ -133,14 +136,13 @@ describe("createMatrix", () => {
         }).toThrow("fill is required");
     });
 
-    /*test("gets number for array size and filling argument", () => {
-        expect(createMatrix(3,"foo")).toBe(["foo", "foo", "foo"],
-                                           ["foo", "foo", "foo"],
-                                           ["foo", "foo", "foo"]);
-        expect(createMatrix(5, "hello")).toBe(['hello', 'hello', 'hello', 'hello', 'hello'],
+    test("gets number for array size and filling argument", () => {
+        expect(createMatrix(2,"foo")).toEqual(["foo", "foo"],
+                                              ["foo", "foo"]);
+        /*expect(createMatrix(5, "hello")).toBe(['hello', 'hello', 'hello', 'hello', 'hello'],
                                               ['hello', 'hello', 'hello', 'hello', 'hello'],
                                               ['hello', 'hello', 'hello', 'hello', 'hello'],
                                               ['hello', 'hello', 'hello', 'hello', 'hello'],
                                               ['hello', 'hello', 'hello', 'hello', 'hello']);
-    });*/
+    */});
 });

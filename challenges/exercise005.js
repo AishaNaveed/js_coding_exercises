@@ -1,9 +1,11 @@
 const findNextNumber = (nums, n) => {
   if (nums === undefined) throw new Error("nums is required");
   if (n === undefined) throw new Error("n is required");
+
+  if (nums[nums.length - 1] === n)
+    return null;
   for (let i = 0; i < nums.length; i++) {
     if (nums[i] == n) {
-      //if(nums[i] != nums.lastIndexOf)
       return nums[i + 1];
     }
   }
@@ -55,23 +57,26 @@ const arrShift = arr => {
 const findNeedle = (haystack, searchTerm) => {
   if (haystack === undefined) throw new Error("haystack is required");
   if (searchTerm === undefined) throw new Error("searchTerm is required");
-  // Your code here!
+
+  for (let key in haystack) {
+    if (haystack[key].toLowerCase().includes(searchTerm.toLowerCase())) {
+      return true;
+    }
+    return false;
+  }
 };
 
 const getWordFrequencies = str => {
   if (str === undefined) throw new Error("str is required");
 
-  let output = new Array(), arr = new Array();
-
-  arr = str.toLowerCase().replace(/[^a-zA-Z ]/g, "").split(" ");
-
+  let output = {};
+  let arr = str.toLowerCase().replace(/[^a-zA-Z ]/g, "").split(" ");
   for (let i = 0; i < arr.length; i++) {
-    let word = arr[i];
-    if (output[word] === undefined) {
-      output[word] = 1;
+    if (output[arr[i]] === undefined) {
+      output[arr[i]] = 1;
     }
     else {
-      output[word] += 1;
+      output[arr[i]] += 1;
     }
   }
   return output;
