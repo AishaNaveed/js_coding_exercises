@@ -25,6 +25,17 @@ const sumMultiples = arr => {
  */
 const isValidDNA = str => {
   if (str === undefined) throw new Error("str is required");
+  if (!isNaN(str)) throw new Error("enter a valid DNA string");
+  if (str != str.toUpperCase()) throw new Error("string should be upper case");
+
+  let validLetters = ["G", "C", "T", "A"];
+  for (let i = 0; i < str.length; i++) {
+    if (!validLetters.includes(str[i])) {
+      //console.log("invalid letter: " + str[i]);
+      return false;
+    }
+  }
+  return true;
 };
 
 /**
@@ -34,6 +45,34 @@ const isValidDNA = str => {
  */
 const getComplementaryDNA = str => {
   if (str === undefined) throw new Error("str is required");
+  if (!isNaN(str)) throw new Error("enter a valid DNA string");
+  if (str != str.toUpperCase()) throw new Error("string should be upper case");
+
+  let regExp = /AC|CA|TG|GT/g,
+    combi = {
+      "AC": "TG",
+      "AC": "GT",
+      "CA": "TG",
+      "TG": "AC",
+      "GT": "CA",
+      "TG": "CA",
+      "GT": "AC"
+    };
+  let validLetters = ["G", "C", "T", "A"];
+
+  for (let i = 0; i < str.length; i++) {
+    if (!validLetters.includes(str[i])) {
+      return false;
+    }
+  }
+  if (str.length % 4 === 0) {
+    return str.replace(regExp, function (match) {
+      return combi[match];
+    });
+  }
+  return str.substring(0, str.length - 2).replace(regExp, function (match) {
+    return combi[match];
+  }) + str.slice(str.length - 2);
 };
 
 /**
@@ -43,7 +82,9 @@ const getComplementaryDNA = str => {
  */
 const isItPrime = n => {
   if (n === undefined) throw new Error("n is required");
-  
+  if (isNaN(n)) throw new Error("A number is required");
+  if(n % 1 != 0) throw new Error("Enter an integar number");
+
   if (n <= 1)
     return false;
   else if (n > 1) {
@@ -69,6 +110,8 @@ const isItPrime = n => {
 const createMatrix = (n, fill) => {
   if (n === undefined) throw new Error("n is required");
   if (fill === undefined) throw new Error("fill is required");
+
+  return Array(n).fill(Array(n).fill(fill));
 };
 
 /**

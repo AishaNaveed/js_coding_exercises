@@ -44,13 +44,69 @@ describe("sumMultiples", () => {
     });
 });
 
+describe("isValidDNA", () => {
+    test("function throws an error if no argument is given", () => {
+        expect(() => {
+            isValidDNA()
+        }).toThrow("str is required");
+        expect(() => {
+            isValidDNA(2)
+        }).toThrow("enter a valid DNA string");
+        expect(() => {
+            isValidDNA("gctc")
+        }).toThrow("string should be upper case");
+    });
+
+    test("gives false if str does not contain valid DNA character", () => {
+        expect(isValidDNA("GCTDB")).toBe(false);
+        expect(isValidDNA("GCSJ TDB")).toBe(false);
+    });
+
+    test("gives true if str contain valid DNA character", () => {
+        expect(isValidDNA("GCT")).toBe(true);
+        expect(isValidDNA("GCTATGCGTACGTACGTCGTACG")).toBe(true);
+    });
+});
+
+describe("getComplementaryDNA", () => {
+    test("function throws an error if no argument is given", () => {
+        expect(() => {
+            getComplementaryDNA()
+        }).toThrow("str is required");
+        expect(() => {
+            getComplementaryDNA(2)
+        }).toThrow("enter a valid DNA string");
+        expect(() => {
+            getComplementaryDNA("gctc")
+        }).toThrow("string should be upper case");
+    });
+
+    test("gives false if str does not contain valid DNA character", () => {
+        expect(getComplementaryDNA("GCTDB")).toBe(false);
+        expect(getComplementaryDNA("GCSJ TDB")).toBe(false);
+    });
+
+    test("gives complimentery str contain valid DNA character", () => {
+        expect(getComplementaryDNA("CATG")).toBe("TGCA");
+        expect(getComplementaryDNA("GTACCATG")).toBe("ACGTTGCA");
+    });
+    
+    test("if not in pairs, gives paired complimentery str contain valid DNA character along with single complemented DNA string", () => {
+        expect(getComplementaryDNA("ACGTTG")).toBe("GTACTG");
+        expect(getComplementaryDNA("ACGTTGCATG")).toBe("GTACCATGTG");
+    });
+});
+
 describe("isItPrime", () => {
     test("function throws an error if no argument is qiven", () => {
         expect(() => {
             isItPrime()
         }).toThrow("n is required");
+        expect(() => {
+            isItPrime("abc")
+        }).toThrow("A number is required");
     });
-    
+
     test("gives false if number is less than or equal to 1", () => {
         expect(isItPrime(1)).toBe(false);
         expect(isItPrime(-45)).toBe(false);
@@ -62,4 +118,29 @@ describe("isItPrime", () => {
         expect(isItPrime(33)).toBe(false);
         expect(isItPrime(23)).toBe(true);
     });
+});
+
+describe("createMatrix", () => {
+    test("function throws an error if no/less argument is qiven", () => {
+        expect(() => {
+            createMatrix()
+        }).toThrow("n is required");
+        expect(() => {
+            createMatrix("abc")
+        }).toThrow("fill is required");
+        expect(() => {
+            createMatrix(4)
+        }).toThrow("fill is required");
+    });
+
+    /*test("gets number for array size and filling argument", () => {
+        expect(createMatrix(3,"foo")).toBe(["foo", "foo", "foo"],
+                                           ["foo", "foo", "foo"],
+                                           ["foo", "foo", "foo"]);
+        expect(createMatrix(5, "hello")).toBe(['hello', 'hello', 'hello', 'hello', 'hello'],
+                                              ['hello', 'hello', 'hello', 'hello', 'hello'],
+                                              ['hello', 'hello', 'hello', 'hello', 'hello'],
+                                              ['hello', 'hello', 'hello', 'hello', 'hello'],
+                                              ['hello', 'hello', 'hello', 'hello', 'hello']);
+    });*/
 });
