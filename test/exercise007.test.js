@@ -29,3 +29,31 @@ describe("sumDigits", () => {
     });
 });
 
+describe("createRange", () => {
+    test("function throws an error if no argument is given", () => {
+        expect(() => {
+            createRange()
+        }).toThrow("start is required");
+    });
+
+    test("function throws an error if only one/two arguments is given", () => {
+        expect(() => {
+            createRange(1)
+        }).toThrow("end is required");
+        expect(() => {
+            createRange(13, 2)
+        }).toThrow("Range cannot be created");
+        expect(() => {
+            createRange(22, 1, 3)
+        }).toThrow("Range cannot be created");
+    });
+
+    test("Create range of given start and end numbers using the step count including negative numbers", () => {
+        expect(createRange(1, 10, 2)).toEqual([1, 3, 5, 7, 9]);
+        expect(createRange(-10, 24, 4)).toEqual([-10, -6, -2, 2, 6, 10, 14, 18, 22]);
+    });
+
+    test("if no step count is given than step is considered as 1", () => {
+        expect(createRange(5, 20)).toEqual([5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]);
+    });
+});
