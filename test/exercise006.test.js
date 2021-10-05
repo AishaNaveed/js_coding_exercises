@@ -137,12 +137,48 @@ describe("createMatrix", () => {
     });
 
     test("gets number for array size and filling argument", () => {
-        expect(createMatrix(2,"foo")).toEqual(["foo", "foo"],
-                                              ["foo", "foo"]);
-        /*expect(createMatrix(5, "hello")).toBe(['hello', 'hello', 'hello', 'hello', 'hello'],
+        expect(createMatrix(2,"foo")).toEqual([["foo", "foo"],["foo", "foo"]]);
+        expect(createMatrix(5, "hello")).toEqual([['hello', 'hello', 'hello', 'hello', 'hello'],
                                               ['hello', 'hello', 'hello', 'hello', 'hello'],
                                               ['hello', 'hello', 'hello', 'hello', 'hello'],
                                               ['hello', 'hello', 'hello', 'hello', 'hello'],
-                                              ['hello', 'hello', 'hello', 'hello', 'hello']);
-    */});
+                                              ['hello', 'hello', 'hello', 'hello', 'hello']]);
+       });
+});
+
+
+const staff1 = [
+    { name: "Sally", rota: ["Monday", "Tuesday", "Friday"] },
+    { name: "Pedro", rota: ["Saturday", "Sunday", "Tuesday", "Wednesday"] },
+    { name: "John", rota: ["Sunday", "Tuesday", "Wednesday", "Thursday"] },
+    { name: "William", rota: ["Monday", "Wednesday", "Friday"] },
+    { name: "Sarah", rota: ["Saturday", "Tuesday", "Wednesday"] },
+    { name: "Alison", rota: ["Saturday", "Sunday", "Monday", "Wednesday"] }
+]
+
+describe("areWeCovered", () => {
+    test("function throws an error if no argument is given", () => {
+        expect(() => {
+            areWeCovered()
+        }).toThrow("staff is required");
+    });
+
+    test("function throws an error if 1 argument is given", () => {
+        expect(() => {
+            areWeCovered(staff1)
+        }).toThrow("day is required");
+        expect(() => {
+            areWeCovered("Friday")
+        }).toThrow("day is required");
+    });
+
+    test("gives false if number of staff is less than 3 on a particular day", () => {
+        expect(areWeCovered(staff1,"Friday")).toBe(false);
+        expect(areWeCovered(staff1,"Thursday")).toBe(false);
+    });
+
+    test("gives true if number of staff is equal or more than 3 in a particular day", () => {
+        expect(areWeCovered(staff1, "Wednesday")).toBe(true);
+        expect(areWeCovered(staff1, "Monday")).toBe(true);
+    });
 });

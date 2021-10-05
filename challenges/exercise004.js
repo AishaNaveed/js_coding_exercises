@@ -98,6 +98,7 @@ function findSentencesContaining(sentences, str) {
 
 function getLongestSides(triangles) {
   if (!triangles) throw new Error("triangles is required");
+
   return triangles.map(temp => {
     const big = Math.max(...temp);
     return big;

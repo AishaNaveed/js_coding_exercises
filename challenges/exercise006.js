@@ -6,7 +6,6 @@
  */
 const sumMultiples = arr => {
   if (arr === undefined) throw new Error("arr is required");
-
   if (!Array.isArray(arr)) throw new Error("An Array is required");
 
   let sum = 0;
@@ -31,7 +30,6 @@ const isValidDNA = str => {
   let validLetters = ["G", "C", "T", "A"];
   for (let i = 0; i < str.length; i++) {
     if (!validLetters.includes(str[i])) {
-      //console.log("invalid letter: " + str[i]);
       return false;
     }
   }
@@ -83,7 +81,7 @@ const getComplementaryDNA = str => {
 const isItPrime = n => {
   if (n === undefined) throw new Error("n is required");
   if (isNaN(n)) throw new Error("A number is required");
-  if(n % 1 != 0) throw new Error("Enter an integar number");
+  if (n % 1 != 0) throw new Error("Enter an integar number");
 
   if (n <= 1)
     return false;
@@ -129,6 +127,15 @@ const createMatrix = (n, fill) => {
 const areWeCovered = (staff, day) => {
   if (staff === undefined) throw new Error("staff is required");
   if (day === undefined) throw new Error("day is required");
+  
+  let temp = 0;
+  for (let i = 0; i < staff.length; i++) {
+    for (let x in staff[i].rota) {
+      if (staff[i].rota[x] === day)
+        temp++;
+    }
+  }
+  return temp >= 3 ? true : false;
 };
 
 module.exports = {

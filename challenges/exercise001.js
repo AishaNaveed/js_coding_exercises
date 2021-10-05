@@ -16,10 +16,7 @@ function addVAT(originalPrice, vatRate) {
   if (vatRate === undefined) throw new Error("vatRate is required");
 
   const vatCal = originalPrice + (originalPrice * vatRate / 100);
-  if (vatCal % 1 != 0)
-    return parseFloat(vatCal.toFixed(2));
-  else
-    return vatCal;
+  return vatCal % 1 != 0 ? parseFloat(vatCal.toFixed(2)) : vatCal;
 }
 
 function getSalePrice(originalPrice, reduction) {
@@ -27,25 +24,19 @@ function getSalePrice(originalPrice, reduction) {
   if (reduction === undefined) throw new Error("reduction is required");
 
   let result = originalPrice - (originalPrice * reduction / 100);
-  if (result % 1 != 0)
-    return parseFloat(result.toFixed(2));
-  else
-    return result;
+  return result % 1 != 0 ? parseFloat(result.toFixed(2)) : result;
 }
 
 function getMiddleCharacter(str) {
   if (str === undefined) throw new Error("str is required");
 
   const size = str.length;
-  if (size % 2 == 0)
-    return str.substring((size / 2) - 1, (size / 2) + 1);
-  else
-    return str.substring((size - 1) / 2, (size - 1) / 2 + 1);
+  return size % 2 == 0 ? str.substring((size / 2) - 1, (size / 2) + 1) : str.substring((size - 1) / 2, (size - 1) / 2 + 1);
 }
 
 function reverseWord(word) {
   if (word === undefined) throw new Error("word is required");
-  // split() will return a new array
+
   return word.split("").reverse().join("");
 }
 
@@ -78,10 +69,8 @@ function getMeanScore(scores) {
     sum = sum + scores[i];
   }
   const result = sum / scores.length;
-  if (result % 1 != 0)
-    return parseFloat(result.toFixed(2));
-  else
-    return result;
+
+  return result % 1 != 0 ? parseFloat(result.toFixed(2)) : result;
 }
 
 function simpleFizzBuzz(n) {

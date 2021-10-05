@@ -31,7 +31,7 @@ const createRange = (start, end, step) => {
   arr[0] = start;
   while (start < end) {
     arr.push(start += step || 1);
-    if (start > end){
+    if (start > end) {
       arr.pop();
     }
   }
@@ -67,9 +67,22 @@ const createRange = (start, end, step) => {
  * For example, if passed the above users and the date "2019-05-04" the function should return ["beth_1234"] as she used over 100 minutes of screentime on that date.
  * @param {Array} users
  */
+
 const getScreentimeAlertList = (users, date) => {
   if (users === undefined) throw new Error("users is required");
   if (date === undefined) throw new Error("date is required");
+
+  let temp = 0;
+  for (let j = 0; j < users.length; j++) {
+    for (let i = 0; i < users[j].screenTime.length; i++) {
+      if (users[j].screenTime[i].date === date) {
+        for (let x in users[j].screenTime[i].usage) {
+          temp += users[j].screenTime[i].usage[x];
+        }
+      }
+    }
+  }
+  return temp > 100 ? users[0].username : null;
 };
 
 /**
@@ -84,6 +97,16 @@ const getScreentimeAlertList = (users, date) => {
  */
 const hexToRGB = hexStr => {
   if (hexStr === undefined) throw new Error("hexStr is required");
+  if (hexStr.length != 7) throw new Error("Six digit hex color needed with hex sign");
+
+  let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hexStr);
+  if (result) {
+    r = parseInt(result[1], 16);
+    g = parseInt(result[2], 16);
+    b = parseInt(result[3], 16);
+    return `RGB(${r},${g},${b})`;
+  }
+  return null;
 };
 
 /**

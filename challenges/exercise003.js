@@ -1,5 +1,6 @@
 function getSquares(nums) {
   if (nums === undefined) throw new Error("nums is required");
+
   if (nums.length == 0)
     return nums;
   else {
@@ -12,6 +13,7 @@ function getSquares(nums) {
 
 function camelCaseWords(words) {
   if (words === undefined) throw new Error("words is required");
+  
   let first, temp, str = "";
   for (let i = 0; i < words.length; i++) {
     first = words[i];
@@ -26,6 +28,7 @@ function camelCaseWords(words) {
 
 function getTotalSubjects(people) {
   if (people === undefined) throw new Error("people is required");
+  
   let sum = 0;
   for (let i = 0; i < people.length; i++)
     sum += people[i].subjects.length;
