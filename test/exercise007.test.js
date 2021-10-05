@@ -126,3 +126,37 @@ describe("getScreentimeAlertList", () => {
         expect(getScreentimeAlertList(users, "2019-06-14")).toEqual(null);
     });
 });
+
+const board = [
+    ["X", "0", null],
+    ["X", null, "0"],
+    ["X", null, "0"]
+]
+
+const board1 = [
+    ["0", "0", null],
+    ["X", "0", "0"],
+    ["X", null, "0"]
+]
+
+const board2 = [
+    [null, "0", null],
+    ["X", null, "0"],
+    ["X", null, "0"]
+]
+describe("findWinner", () => {
+    test("function throws an error if array board is not passed", () => {
+        expect(() => {
+            findWinner()
+        }).toThrow("board is required");
+    });
+
+    test("return X or 0 accordingly who ever is winner", () => {
+        expect(findWinner(board)).toEqual("X is winner");
+        expect(findWinner(board1)).toEqual("0 is winner");
+    });
+
+    test("function will return null if no one is winner", () => {
+        expect(findWinner(board2)).toEqual(null);
+    });
+});
