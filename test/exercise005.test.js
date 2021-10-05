@@ -80,7 +80,7 @@ describe("arrShift", () => {
     expect(arrShift([])).toEqual([]);
   });
 });
-/*
+
 describe("findNeedle", () => {
   test("returns true if any of the properties of an object contain the specified string", () => {
     const obj1 = {
@@ -132,13 +132,12 @@ describe("findNeedle", () => {
       store: "Warrington",
       code: 12872
     };
-
     expect(findNeedle(obj1, "warrington")).toBe(true);
     expect(findNeedle(obj1, "linnmon")).toBe(true);
     expect(findNeedle(obj1, "Liverpool")).toBe(false);
   });
 });
-*/
+
 describe("getWordFrequencies", () => {
   test("returns the frequencies of each word in a string", () => {
     expect(getWordFrequencies("hello world")).toEqual({
