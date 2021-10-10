@@ -135,7 +135,7 @@ const areWeCovered = (staff, day) => {
         temp++;
     }
   }
-  return temp >= 3 ? true : false;
+  return temp >= 3;
 };
 
 module.exports = {

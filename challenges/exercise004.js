@@ -1,83 +1,55 @@
 function findSmallNums(nums) {
   if (!nums) throw new Error("nums is required");
-
-  let temp = 0;
-  let arr = new Array();
-  for (let i = 0; i < nums.length; i++) {
-    if (nums[i] < 1) {
-      arr[temp] = nums[i];
-      temp++;
-    }
-  }
-  return arr;
+  const temp = nums.filter(small => small < 1);
+  return temp;
 }
 
 function findNamesBeginningWith(names, char) {
   if (!names) throw new Error("names is required");
   if (!char) throw new Error("char is required");
-  let temp = 0;
-  let arr = new Array();
-  for (let i = 0; i < names.length; i++) {
-    if (names[i].charAt(0) == char) {
-      arr[temp] = names[i];
-      temp++;
-    }
-  }
-  return arr;
+  const temp = names.filter(element => element.charAt(0) === char);
+  return temp;
 }
 
 function findVerbs(words) {
   if (!words) throw new Error("words is required");
-  let temp = 0;
-  let arr = new Array();
-  for (let i = 0; i < words.length; i++) {
-    if (words[i].startsWith("to ") == true) {
-      arr[temp] = words[i];
-      temp++;
-    }
-  }
+  let arr = [];
+  words.forEach(element => {
+    if (element.startsWith("to ") === true)
+      arr.push(element);
+  });
   return arr;
 }
 
 function getIntegers(nums) {
   if (!nums) throw new Error("nums is required");
-  let temp = 0;
-  let arr = new Array();
-  for (let i = 0; i < nums.length; i++) {
-    if ((nums[i] % 1) == 0) {
-      arr[temp] = nums[i];
-      temp++;
-    }
-  }
+  let arr = [];
+  nums.forEach(element => {
+    if ((element % 1) === 0)
+      arr.push(element);
+  });
   return arr;
 }
 
 function getCities(users) {
   if (!users) throw new Error("users is required");
-  let temp = 0;
-  let arr = new Array();
-  for (let i = 0; i < users.length; i++) {
-    arr[temp] = users[i].data.city.displayName;
-    temp++;
-  }
+  let arr = [];
+  users.forEach(element => {
+    arr.push(element.data.city.displayName);
+  });
   return arr;
 }
 
 function getSquareRoots(nums) {
   if (!nums) throw new Error("nums is required");
-  let temp = 0;
-  let arr = new Array();
-  for (let i = 0; i < nums.length; i++) {
-    let num = Math.sqrt(nums[i]);
-    if (num % 1 != 0) {
-      arr[temp] = parseFloat(num.toFixed(2));
-      temp++;
-    }
-    else {
-      arr[temp] = num;
-      temp++;
-    }
-  }
+  let arr = [];
+  nums.forEach(element => {
+    let sum = Math.sqrt(element);
+    if (sum % 1 != 0)
+      arr.push(parseFloat(sum.toFixed(2)));
+    else
+      arr.push(sum);
+  });
   return arr;
 }
 
@@ -85,14 +57,11 @@ function findSentencesContaining(sentences, str) {
   if (!sentences) throw new Error("sentences is required");
   if (!str) throw new Error("str is required");
 
-  let temp = 0;
-  let arr = new Array();
-  for (let i = 0; i < sentences.length; i++) {
-    if (sentences[i].toLowerCase().includes(str.toLowerCase()) == true) {
-      arr[temp] = sentences[i].split().toString();
-      temp++;
-    }
-  }
+  let arr = [];
+  sentences.forEach(element => {
+    if (element.toLowerCase().includes(str.toLowerCase()) === true)
+      arr.push(element.split().toString());
+  });
   return arr;
 }
 

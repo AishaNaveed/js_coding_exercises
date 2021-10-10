@@ -30,8 +30,9 @@ function getTotalSubjects(people) {
   if (people === undefined) throw new Error("people is required");
   
   let sum = 0;
-  for (let i = 0; i < people.length; i++)
-    sum += people[i].subjects.length;
+  people.forEach(element => {
+    sum += element.subjects.length;
+  });
   return sum;
 }
 

@@ -2,7 +2,7 @@
 
 function printColours(colours){
     if (!colours) throw new Error("colour is required");
-    // Your solution using the spread operator here!
+    return colours;
 }
 
 function shoppingList(list, newItem){
