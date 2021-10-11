@@ -32,11 +32,9 @@ const reverseNumber = n => {
 const sumArrays = arrs => {
   if (arrs === undefined) throw new Error("arrs is required");
   let sum = 0;
-  for (let i = 0; i < arrs.length; i++) {
-    for (let j = 0; j < arrs[i].length; j++) {
-      sum += arrs[i][j];
-    }
-  }
+  arrs.forEach(element => {
+    element.forEach(key => sum += key);
+  });
   return sum;
 };
 
@@ -58,27 +56,19 @@ const findNeedle = (haystack, searchTerm) => {
   if (haystack === undefined) throw new Error("haystack is required");
   if (searchTerm === undefined) throw new Error("searchTerm is required");
 
-  let arr = new Array(),
-    abc = new Array();
-
-  abc = Object.values(haystack);
-  arr = abc.toString();
-  return arr.toLowerCase().includes(searchTerm.toLowerCase()) ? true : false;
+  let needle = {};
+  needle = Object.values(haystack);
+  return (needle.toString()).toLowerCase().includes(searchTerm.toLowerCase());
 };
 
 const getWordFrequencies = str => {
   if (str === undefined) throw new Error("str is required");
 
   let output = {};
-  let arr = str.toLowerCase().replace(/[^a-zA-Z ]/g, "").split(" ");
-  for (let i = 0; i < arr.length; i++) {
-    if (output[arr[i]] === undefined) {
-      output[arr[i]] = 1;
-    }
-    else {
-      output[arr[i]] += 1;
-    }
-  }
+  let temp = str.toLowerCase().replace(/[^a-zA-Z ]/g, "").split(" ");
+  temp.forEach(element =>
+    output[element] === undefined ? output[element] = 1 : output[element] += 1
+  );
   return output;
 };
 
