@@ -1,23 +1,23 @@
 // Spread Syntax Bonus activity
 
-function printColours(colours){
+function printColours(colours) {
     if (!colours) throw new Error("colour is required");
     return colours;
 }
 
-function shoppingList(list, newItem){
+function shoppingList(list, newItem) {
     if (!list) throw new Error("list is required");
     if (!newItem) throw new Error("newItem is required");
     const temp = [...list, ...newItem];
     return temp;
-  }
+}
 
-function highestNumber(numbers){
+function highestNumber(numbers) {
     if (!numbers) throw new Error("numbers are required");
     return Math.max(...numbers);
 }
 
-function splitThatString(string){
+function splitThatString(string) {
     if (!string) throw new Error("string is required");
     return string.split("");
 }
@@ -25,9 +25,9 @@ function splitThatString(string){
 
 // Optional Chaining Bonus activity!
 
-function addressLookUp(user){
+function addressLookUp(user) {
     if (!user) throw new Error("user is required");
-    return user?.address?.postcode ?  user.address.postcode : undefined;
+    return user?.address?.postcode ? user.address.postcode : undefined;
 }
 
 

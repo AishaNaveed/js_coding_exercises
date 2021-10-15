@@ -4,16 +4,14 @@ function getSquares(nums) {
   if (nums.length == 0)
     return nums;
   else {
-    for (let i = 0; i < nums.length; i++) {
-      nums[i] *= nums[i];
-    }
+    for (let i = 0; i < nums.length; i++)
+      nums[i] = Math.pow(nums[i], 2);
     return nums;
   }
 }
-
 function camelCaseWords(words) {
   if (words === undefined) throw new Error("words is required");
-  
+
   let first, temp, str = "";
   for (let i = 0; i < words.length; i++) {
     first = words[i];
@@ -28,7 +26,7 @@ function camelCaseWords(words) {
 
 function getTotalSubjects(people) {
   if (people === undefined) throw new Error("people is required");
-  
+
   let sum = 0;
   people.forEach(element => {
     sum += element.subjects.length;

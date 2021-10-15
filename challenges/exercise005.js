@@ -14,6 +14,7 @@ const findNextNumber = (nums, n) => {
 
 const count1sand0s = str => {
   if (str === undefined) throw new Error("str is required");
+  
   let sum = 0;
   for (let i = 0; i < str.length; i++) {
     sum += Number(str[i]);
@@ -26,6 +27,7 @@ const count1sand0s = str => {
 
 const reverseNumber = n => {
   if (n === undefined) throw new Error("n is required");
+  
   return parseFloat(n.toString().split('').reverse().join('') * Math.sign(n));
 };
 
@@ -66,7 +68,7 @@ const getWordFrequencies = str => {
 
   let output = {};
   let temp = str.toLowerCase().replace(/[^a-zA-Z ]/g, "").split(" ");
-  temp.forEach(element =>
+  temp.map(element =>
     output[element] === undefined ? output[element] = 1 : output[element] += 1
   );
   return output;

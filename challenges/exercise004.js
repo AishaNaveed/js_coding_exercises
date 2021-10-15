@@ -1,64 +1,47 @@
 function findSmallNums(nums) {
   if (!nums) throw new Error("nums is required");
-  const temp = nums.filter(small => small < 1);
-  return temp;
+
+  return nums.filter(small => small < 1);
 }
 
 function findNamesBeginningWith(names, char) {
   if (!names) throw new Error("names is required");
   if (!char) throw new Error("char is required");
-  const temp = names.filter(element => element.charAt(0) === char);
-  return temp;
+
+  return names.filter(nameSearch => nameSearch.charAt(0) === char);
 }
 
 function findVerbs(words) {
   if (!words) throw new Error("words is required");
-  let arr = [];
-  words.forEach(element => {
-    if (element.startsWith("to ") === true)
-      arr.push(element);
-  });
-  return arr;
+
+  return words.filter(verbBegin => verbBegin.startsWith("to ") === true);
 }
 
 function getIntegers(nums) {
   if (!nums) throw new Error("nums is required");
-  let arr = [];
-  nums.forEach(element => {
-    if ((element % 1) === 0)
-      arr.push(element);
-  });
-  return arr;
+
+  return nums.filter(value => value % 1 === 0);
 }
 
 function getCities(users) {
   if (!users) throw new Error("users is required");
-  return users.map(element => element.data.city.displayName);
+
+  return users.map(place => place.data.city.displayName);
 }
 
 function getSquareRoots(nums) {
   if (!nums) throw new Error("nums is required");
-  let arr = [];
-  nums.forEach(element => {
-    let sum = Math.sqrt(element);
-    if (sum % 1 != 0)
-      arr.push(parseFloat(sum.toFixed(2)));
-    else
-      arr.push(sum);
-  });
-  return arr;
+
+  return nums.map(arrNum => Math.sqrt(arrNum) % 1 != 0 ?
+    parseFloat(Math.sqrt(arrNum).toFixed(2)) :
+    Math.sqrt(arrNum));
 }
 
 function findSentencesContaining(sentences, str) {
   if (!sentences) throw new Error("sentences is required");
   if (!str) throw new Error("str is required");
 
-  let arr = [];
-  sentences.forEach(element => {
-    if (element.toLowerCase().includes(str.toLowerCase()) === true)
-      arr.push(element.split().toString());
-  });
-  return arr;
+  return sentences.filter(word => word.toLowerCase().includes(str.toLowerCase()) === true);
 }
 
 function getLongestSides(triangles) {
