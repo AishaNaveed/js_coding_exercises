@@ -31,9 +31,7 @@ const createRange = (start, end, step) => {
   arr[0] = start;
   while (start < end) {
     arr.push(start += step || 1);
-    if (start > end) {
-      arr.pop();
-    }
+    start > end ? arr.pop() : arr
   }
   return arr;
 };
@@ -72,17 +70,12 @@ const getScreentimeAlertList = (users, date) => {
   if (users === undefined) throw new Error("users is required");
   if (date === undefined) throw new Error("date is required");
 
-  let temp = 0;
-  for (let j = 0; j < users.length; j++) {
-    for (let i = 0; i < users[j].screenTime.length; i++) {
-      if (users[j].screenTime[i].date === date) {
-        for (let x in users[j].screenTime[i].usage) {
-          temp += users[j].screenTime[i].usage[x];
-        }
-      }
-    }
-  }
-  return temp > 100 ? users[0].username : null;
+  let totalUsage = 0;
+  users.forEach(person => {
+    person.screenTime.forEach(account => account.date === date ?
+      Object.values(account.usage).every(socialAcc => totalUsage += socialAcc) : totalUsage)
+  });
+  return totalUsage > 100 ? users[0].username : null;
 };
 
 /**
@@ -126,24 +119,23 @@ const findWinner = board => {
   arr.push("X");
   arr.push("0");
 
-  for (let i = 0; i < arr.length; i++) {
-    if (board[0][0] === arr[i]) {
-      if (board[0][0] === board[0][1] && board[0][0] === board[0][2])
-        symbol = arr[i];
-      else if (board[0][0] === board[1][0] && board[1][0] === board[2][0])
-        symbol = arr[i];
-      else if (board[0][0] === board[1][1] && board[1][1] === board[2][2])
-        symbol = arr[i];
-      else if (board[1][0] === board[1][1] && board[1][1] === board[1][2])
-        symbol = arr[i];
-      else if (board[2][0] === board[2][1] && board[2][1] === board[2][2])
-        symbol = arr[i];
-      else if (board[1][0] === board[1][1] && board[1][1] === board[1][2])
-        symbol = arr[i];
-      else if (board[2][0] === board[2][1] && board[2][1] === board[2][2])
-        symbol = arr[i];
-    }
-  }
+  arr.forEach(position => board[0][0] === position ?
+    board[0][0] === board[0][1] && board[0][0] === board[0][2] ?
+      symbol = position :
+      board[0][0] === board[1][0] && board[1][0] === board[2][0] ?
+        symbol = position :
+        board[0][0] === board[1][1] && board[1][1] === board[2][2] ?
+          symbol = position :
+          board[1][0] === board[1][1] && board[1][1] === board[1][2] ?
+            symbol = position :
+            board[2][0] === board[2][1] && board[2][1] === board[2][2] ?
+              symbol = position :
+              board[1][0] === board[1][1] && board[1][1] === board[1][2] ?
+                symbol = position :
+                board[2][0] === board[2][1] && board[2][1] === board[2][2] ?
+                  symbol = position : null
+    : null);
+
   return symbol === null ? null : `${symbol} is winner`;
 };
 

@@ -9,11 +9,7 @@ const sumMultiples = arr => {
   if (!Array.isArray(arr)) throw new Error("An Array is required");
 
   let sum = 0;
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i] % 5 === 0 || arr[i] % 3 === 0) {
-      sum += arr[i];
-    }
-  }
+  arr.forEach(multiple => (multiple % 5 === 0 || multiple % 3 === 0) ? sum += multiple : sum);
   return sum;
 };
 
@@ -28,12 +24,7 @@ const isValidDNA = str => {
   if (str != str.toUpperCase()) throw new Error("string should be upper case");
 
   let validLetters = ["G", "C", "T", "A"];
-  for (let i = 0; i < str.length; i++) {
-    if (!validLetters.includes(str[i])) {
-      return false;
-    }
-  }
-  return true;
+  return Object.values(str).every(DNA => !validLetters.includes(DNA) ? false : true);
 };
 
 /**
@@ -46,7 +37,7 @@ const getComplementaryDNA = str => {
   if (!isNaN(str)) throw new Error("enter a valid DNA string");
   if (str != str.toUpperCase()) throw new Error("string should be upper case");
 
-  let regExp = /AC|CA|TG|GT/g,
+  let bool, regExp = /AC|CA|TG|GT/g,
     combi = {
       "AC": "TG",
       "AC": "GT",
@@ -58,19 +49,11 @@ const getComplementaryDNA = str => {
     };
   let validLetters = ["G", "C", "T", "A"];
 
-  for (let i = 0; i < str.length; i++) {
-    if (!validLetters.includes(str[i])) {
-      return false;
-    }
-  }
-  if (str.length % 4 === 0) {
-    return str.replace(regExp, function (match) {
-      return combi[match];
-    });
-  }
-  return str.substring(0, str.length - 2).replace(regExp, function (match) {
-    return combi[match];
-  }) + str.slice(str.length - 2);
+  Object.values(str).every(DNA => !validLetters.includes(DNA) ? bool = false : bool = true);
+  return bool === false ? false :
+    str.length % 4 === 0 ?
+      str.replace(regExp, match => combi[match]) :
+      str.substring(0, str.length - 2).replace(regExp, match => combi[match]) + str.slice(str.length - 2);
 };
 
 /**
@@ -127,15 +110,12 @@ const createMatrix = (n, fill) => {
 const areWeCovered = (staff, day) => {
   if (staff === undefined) throw new Error("staff is required");
   if (day === undefined) throw new Error("day is required");
-  
-  let temp = 0;
-  for (let i = 0; i < staff.length; i++) {
-    for (let x in staff[i].rota) {
-      if (staff[i].rota[x] === day)
-        temp++;
-    }
-  }
-  return temp >= 3;
+
+  let member = 0;
+  staff.forEach(staffDetail => {
+    staffDetail.rota.forEach(selectedDay => selectedDay === day ? member++ : member);
+  });
+  return member >= 3;
 };
 
 module.exports = {
