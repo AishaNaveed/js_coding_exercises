@@ -2,14 +2,13 @@
 
 function printColours(colours) {
     if (!colours) throw new Error("colour is required");
-    return colours;
+    return [...colours];
 }
 
 function shoppingList(list, newItem) {
     if (!list) throw new Error("list is required");
     if (!newItem) throw new Error("newItem is required");
-    const temp = [...list, ...newItem];
-    return temp;
+    return [...list, ...newItem];
 }
 
 function highestNumber(numbers) {
@@ -27,7 +26,7 @@ function splitThatString(string) {
 
 function addressLookUp(user) {
     if (!user) throw new Error("user is required");
-    return user?.address?.postcode ? user.address.postcode : undefined;
+    return user?.address?.postcode ;
 }
 
 
