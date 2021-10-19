@@ -1,10 +1,9 @@
 function getSquares(nums) {
   if (nums === undefined) throw new Error("nums is required");
 
-  if (!nums.length == 0)
-    for (let count = 0; count < nums.length; count++)
-      nums[count] = Math.pow(nums[count], 2);
-  return nums;
+  let arr = [];
+  return nums.length === 0 ? nums : 
+    nums.forEach(element => arr.push(Math.pow(element, 2))), arr;
 }
 
 function camelCaseWords(words) {
