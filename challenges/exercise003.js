@@ -1,23 +1,17 @@
 function getSquares(nums) {
   if (nums === undefined) throw new Error("nums is required");
 
-  let arr = [];
+  let squareArr = [];
   return nums.length === 0 ? nums : 
-    nums.forEach(element => arr.push(Math.pow(element, 2))), arr;
+    nums.forEach(numObject => squareArr.push(Math.pow(numObject, 2))), squareArr;
 }
 
 function camelCaseWords(words) {
   if (words === undefined) throw new Error("words is required");
 
-  let first, temp, str = "";
-  for (let i = 0; i < words.length; i++) {
-    first = words[i];
-    temp = first.toLowerCase();
-    if (i != 0) {
-      temp = temp.substring(0, 1).toUpperCase() + temp.substring(1);
-    }
-    str += temp;
-  }
+  let str = words.shift();
+     words.map(eachWord => eachWord !== 0 ?
+     str += eachWord.toLowerCase().substring(0,1).toUpperCase() + eachWord.toLowerCase().substring(1) : str);
   return str;
 }
 
