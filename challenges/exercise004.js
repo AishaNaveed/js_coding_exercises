@@ -32,16 +32,14 @@ function getCities(users) {
 function getSquareRoots(nums) {
   if (!nums) throw new Error("nums is required");
 
-  return nums.map(arrNum => Math.sqrt(arrNum) % 1 != 0 ?
-    parseFloat(Math.sqrt(arrNum).toFixed(2)) :
-    Math.sqrt(arrNum));
+  return nums.map(arrNum => parseFloat(Math.sqrt(arrNum).toFixed(2)));
 }
 
 function findSentencesContaining(sentences, str) {
   if (!sentences) throw new Error("sentences is required");
   if (!str) throw new Error("str is required");
 
-  return sentences.filter(word => word.toLowerCase().includes(str.toLowerCase()) === true);
+  return sentences.filter(word => word.toLowerCase().includes(str.toLowerCase()));
 }
 
 function getLongestSides(triangles) {
